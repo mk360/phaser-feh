@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import typescript from 'rollup-plugin-typescript2';
+import copy from 'rollup-plugin-copy';
 
 export default {
 
@@ -55,7 +56,13 @@ export default {
 
         //  See https://www.npmjs.com/package/rollup-plugin-typescript2 for config options
         typescript(),
-
+        copy({
+            targets: [
+                { src: './src/assets/**', dest: 'dist/assets' }
+            ],
+            verbose: true,
+            copyOnce: true,
+        }),
         //  See https://www.npmjs.com/package/rollup-plugin-serve for config options
         serve({
             open: true,

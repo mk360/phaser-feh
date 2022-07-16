@@ -8,16 +8,30 @@ export default class Main extends Phaser.Scene {
     }
 
     create() {
+        const { hp } = this.createCharacter('chrom', 90, 100);
+        hp.setText('41');
     }
 
-    createCharacter() {
+    createCharacter(character: string, x: number, y: number) {
+        const indicator = this.add.rectangle(x, y, 110, 110, 0xB1DAEC);
         const group = this.add.group();
-        const chrom = this.add.image(90, 100, 'chrom');
-        chrom.setScale(0.7, 0.7);
-        const healthBar = this.add.rectangle(chrom.x + 10, chrom.y + chrom.displayHeight / 2 + 20, 70, 10, 0x9B5538);
+        indicator.setAlpha(0.4);
+        const characterImage = this.add.image(indicator.getCenter().x, indicator.getCenter().y, character);
+        group.add(characterImage);
+        characterImage.setScale(0.67);
+        const hp = this.add.text(indicator.getBottomLeft().x + 3, indicator.getBottomLeft().y - 20, '46', {
+            color: 'white',
+            fontFamily: 'sans-serif'
+        });
+        const healthBar = this.add.rectangle(indicator.getBottomCenter().x + 10, indicator.getBottomCenter().y - 10, 80, 10, 0x4DE1FD);
         group.add(healthBar);
-        group.add(chrom);
-
-        return group;
+        group.add(hp);
+        
+        return {
+            group,
+            hp,
+            healthBar,
+            characterImage,
+        };
     };
 }

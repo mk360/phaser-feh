@@ -12,6 +12,8 @@ export default class Demo extends Phaser.Scene
     {
         this.load.image('logo', 'assets/phaser3-logo.png');
         this.load.image('libs', 'assets/libs.png');
+        this.load.image('water', 'assets/WavePattern.webp');
+        this.load.image('floor', 'assets/floor.webp');
         this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
         this.load.glsl('stars', 'assets/starfields.glsl.js');
     }
@@ -40,8 +42,8 @@ export default class Demo extends Phaser.Scene
 const config = {
     type: Phaser.AUTO,
     backgroundColor: '#125555',
-    width: 800,
-    height: 600,
+    width: 360,
+    height: 480,
     scene: Main
 };
 

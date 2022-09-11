@@ -5,11 +5,14 @@ export default class Main extends Phaser.Scene {
 
     preload() {
         this.load.image('chrom', './assets/chrom.png');
+        this.load.image('water', 'assets/WavePattern.webp');
+        this.load.image('floor', 'assets/floor.webp');
     }
 
     create() {
         const { hp } = this.createCharacter('chrom', 90, 100);
-        hp.setText('41');
+        hp.setText('49');
+        
     }
 
     createCharacter(character: string, x: number, y: number) {
